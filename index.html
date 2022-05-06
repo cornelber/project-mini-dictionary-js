@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Dictionary JS</title>
+        <!-- Icons -->
+        <script
+            src="https://kit.fontawesome.com/d4f4fc790a.js"
+            crossorigin="anonymous"
+        ></script>
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap"
+            rel="stylesheet"
+        />
+        <!-- CSS -->
+        <link rel="stylesheet" href="./styles.css" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="input">
+                <div class="title">
+                    <p>Dictionary JS</p>
+                </div>
+                <form>
+                    <input
+                        type="text"
+                        name="word"
+                        id="word"
+                        placeholder="Type word here..."
+                        data-value
+                    />
+                    <button data-find>Find</button>
+                </form>
+            </div>
+            <div data-output class="output unshow">
+                <div class="output-word">
+                    <div class="word">
+                        <p data-searched-word></p>
+                        <p data-phonetic></p>
+                    </div>
+                    <hr />
+                    <p data-word-meaning></p>
+                    <p data-word-example></p>
+                </div>
+            </div>
+        </div>
+        <!-- Javascript -->
+        <script src="./app.js"></script>
+    </body>
+</html>
