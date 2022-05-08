@@ -32,26 +32,43 @@ valueInput.addEventListener('change', () => {
                     wordPhonetic.innerText = ``;
                     wordExample.innerHTML = ``;
                 } else {
-                    let title = data[0].word;
-                    let definition1 = data[0].meanings[0].definitions[0].definition;
-                    let definition2 = data[0].meanings[0].definitions[1].definition;
-                    let phonetic = data[0].phonetic;
-                    let example = data[0].meanings[0].definitions[0].example;
-                    
-                    searchedWord.innerText = `${title}`;
-                    wordMeaning.innerHTML = `${definition1} <br/> ${definition2}`;
-                    if(phonetic) {
-                        wordPhonetic.innerText =` - ${phonetic}`;
+                    if(Array.isArray(data)){
+                        let title = data[0].word;
+                        let definition1 = data[0].meanings[0].definitions[0].definition;
+                        let definition2 = data[0]?.meanings[0]?.definitions[1]?.definition;
+                        let example = data[0].meanings[0].definitions[0].example;
+                        let partOfSpeech = data[0]?.meanings[0]?.partOfSpeech;
+
+                        searchedWord.innerText = `${title}`;
+                        if( definition2 != undefined) {
+                            wordMeaning.innerHTML = `(${partOfSpeech}) ${definition1} <br/> ${definition2}`;
+                        } else {
+                            wordMeaning.innerHTML = `(${partOfSpeech}) ${definition1}`;
+                        };
+
+                        const isHereWordPhonetic = (word) => {
+                            let phoneticFound = data[0].phonetics;
+                            for (let i = 0; i < phoneticFound.length; i++) {
+                                if(phoneticFound[i].text){
+                                    wordPhonetic.innerText =` - ${phoneticFound[i].text}`;
+                                    return phoneticFound[i];
+                                }
+                            }
+                            wordPhonetic.innerText = ``;
+                        }
+                        isHereWordPhonetic(data);
+
+                        if(example){
+                            wordExample.innerHTML = `Example of using <b>${title}</b> in action: <em>${example}</em>`;
+                        } else {
+                            wordExample.innerHTML = ``;
+                        };
                     } else {
-                        wordPhonetic.innerText = ``;
-                    };
-                    if(example){
-                        wordExample.innerHTML = `Example of using <b>${title}</b> in action: <em>${example}</em>`;
-                    } else {
-                        wordExample.innerHTML = ``;
-                    };
+                        // If the input is not array, below code is for object
+                        searchedWord.innerText = `${value}`;
+                        wordMeaning.innerHTML = `<i class="fa-solid fa-exclamation"></i> We are working on this word, try later!`;
+                    }
                 }
-                
             })
         })
     }
