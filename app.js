@@ -67,10 +67,10 @@ valueInput.addEventListener('change', () => {
                         // If the input is not array, below code is for object
                         searchedWord.innerText = `${value}`;
                         wordMeaning.innerHTML = `<i class="fa-solid fa-exclamation"></i> We are working on this word, try later!`;
-                    }
-                }
-            })
-        })
-    }
+                    };
+                };
+            });
+        }).catch(error => console.error(error));
+    };
     getWordMeaning(value);
 })
